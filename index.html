@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 <script src="https://unpkg.com/@solana/spl-token@latest/lib/index.iife.js"></script>
-<script src="scripts/require.js"></script>
-<script>
-    var exports = {}
-</script>
-<script src="https://unpkg.com/borsh@latest/lib/index.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/near-api-js@0.41.0/dist/near-api-js.min.js"></script> -->
+<!-- <script src="scripts/require.js"></script> -->
 <!-- <script src="https://unpkg.com/buffer@6.0.3/index.js"></script> -->
+<!-- <script src="https://unpkg.com/borsh@latest/lib/index.js"></script> -->
+<script src="scripts/utils.js"></script>
+<script src="MetaplexSchema.js"></script>
+<!-- <script src="https://unpkg.com/bn.js@5.1.3/lib/bn.js"></script> -->
+<!-- <script src="https://unpkg.com/borsh@latest/lib/index.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/near-api-js@0.41.0/dist/near-api-js.min.js"></script> -->
 <script>
     console.log(solanaWeb3);
     console.log(splToken);
@@ -124,10 +125,8 @@
                 // accountData = decodeURIComponent(escape(accountInfo.value.data));
                 //console.log(window.TextDecoder);
 
-                //TODO: Use TextDecoder but that'll only properly decode the image URI since that's the only text.
-                const decoder = new window.TextDecoder();
-                accountData = decoder.decode(accountInfo.value.data);
-                console.log(accountData);
+                const decoded = decodeMetadata(accountInfo.value.data);
+                console.log(decoded);
             }
         });
     }
